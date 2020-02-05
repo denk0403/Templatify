@@ -11,10 +11,25 @@
   ],
   "activationEvents": [
     "onCommand:extension.importTemplate",
-    "onCommand:extension.exportTemplate"
+    "onCommand:extension.exportTemplate",
+    "onCommand:extension.removeTemplate",
+    "onCommand:extension.updateTemplate"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": [
+      {
+        "type": "object",
+        "title": "Templatify Configuration",
+        "properties": {
+          "templatify.templateLocation": {
+            "default": null,
+            "description": "The path to the folder to manage templates from.",
+            "scope": "resource"
+          }
+        }
+      }
+    ],
     "commands": [
       {
         "command": "extension.importTemplate",
@@ -23,6 +38,14 @@
       {
         "command": "extension.exportTemplate",
         "title": "Templatify: Export Project Structure as Template"
+      },
+      {
+        "command": "extension.removeTemplate",
+        "title": "Templatify: Remove Template from Template Directory"
+      },
+      {
+        "command": "extension.updateTemplate",
+        "title": "Templatify: Update Template to new Project Structure"
       }
     ]
   },
