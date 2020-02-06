@@ -5,9 +5,17 @@ This changelog follows the structure specified by [Keep a Changelog](http://keep
 
 ## Unreleased
 
+## [1.0.1] - 2020-02-06
+
+### Removed
+
+- Temporary templates for debugging.
+
 ## [1.0.0] - 2020-02-06
+
 ### Added
+
 - Commands for importing, creating, deleting, and updating templates.
 - Responsive notifications for displaying success/error messages and template descriptions.
-- Configuration options for designating the storage directory for templates. 
+- Configuration options for designating the storage directory for templates.
 - Warning notifications about possibly corrupted templates.

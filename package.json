@@ -2,7 +2,7 @@
   "name": "templatify",
   "displayName": "Templatify",
   "description": "Template Manager for Visual Studio Code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "denniskats",
   "engines": {
     "vscode": "^1.41.0"
