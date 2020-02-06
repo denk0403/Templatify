@@ -78,6 +78,13 @@ export async function activate(context: vscode.ExtensionContext) {
 							templateNames,
 							{
 								placeHolder: "Import a template",
+								onDidSelectItem: (item) => {
+									let str = item as string;
+									let message = templates[parseInt(str.slice(0, str.indexOf("."))) - 1].description;
+									if (message) {
+										vscode.window.showInformationMessage(message);
+									}
+								}
 							}
 						);
 
@@ -199,25 +206,27 @@ export async function activate(context: vscode.ExtensionContext) {
 							(template, index) => `${index + 1}. ${template.templateName}`
 						);
 
-						let templateChoiceName = await vscode.window.showQuickPick(
+						let templateChoiceNames = await vscode.window.showQuickPick(
 							templateNames,
 							{
 								placeHolder: "Choose a template to remove",
+								canPickMany: true
 							}
 						);
 
-						let templateChoiceIndex;
-						if (templateChoiceName) {
-							templateChoiceIndex = parseInt(templateChoiceName.slice(0, templateChoiceName.indexOf("."))) - 1;
+						let templateChoiceIndices;
+						if (templateChoiceNames) {
+							templateChoiceIndices = templateChoiceNames.map(name => parseInt(name.slice(0, name.indexOf("."))) - 1);
 						} else {
 							return;
 						}
 
-						// imports selected template into current project
-						if (templateChoiceIndex >= 0) {
-							fs.unlinkSync(path.resolve(templateLocation, encodeName(templates[templateChoiceIndex].templateName) as string));
+						// removes selected templates from template directory
+						templateChoiceIndices.forEach(index => {
+							fs.unlinkSync(path.resolve(templateLocation, encodeName(templates[index].templateName) as string));
 							vscode.window.showInformationMessage("Successfully removed template!");
-						}
+						});
+
 					} catch {
 						vscode.window.showErrorMessage("There was an unexpected error. Try restarting Visual Studio Code.");
 						return;
