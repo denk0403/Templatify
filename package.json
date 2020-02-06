@@ -1,14 +1,26 @@
 {
   "name": "templatify",
   "displayName": "Templatify",
-  "description": "",
-  "version": "0.0.1",
+  "description": "Template Manager for Visual Studio Code",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.41.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/denk0403/Templatify.git"
   },
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "template",
+    "templatify",
+    "folder",
+    "file",
+    "export"
+  ],
+  "icon": "templatify.icon.png",
   "activationEvents": [
     "onCommand:extension.importTemplate",
     "onCommand:extension.exportTemplate",
@@ -20,7 +32,7 @@
     "configuration": [
       {
         "type": "object",
-        "title": "Templatify Configuration",
+        "title": "Templatify",
         "properties": {
           "templatify.templateLocation": {
             "default": null,

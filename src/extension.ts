@@ -210,7 +210,14 @@ export async function activate(context: vscode.ExtensionContext) {
 							templateNames,
 							{
 								placeHolder: "Choose a template to remove",
-								canPickMany: true
+								canPickMany: true,
+								onDidSelectItem: (item) => {
+									let str = item as string;
+									let message = templates[parseInt(str.slice(0, str.indexOf("."))) - 1].description;
+									if (message) {
+										vscode.window.showInformationMessage(message);
+									}
+								}
 							}
 						);
 
@@ -273,6 +280,13 @@ export async function activate(context: vscode.ExtensionContext) {
 							templateNames,
 							{
 								placeHolder: "Select a template to update",
+								onDidSelectItem: (item) => {
+									let str = item as string;
+									let message = templates[parseInt(str.slice(0, str.indexOf("."))) - 1].description;
+									if (message) {
+										vscode.window.showInformationMessage(message);
+									}
+								}
 							}
 						);
 
